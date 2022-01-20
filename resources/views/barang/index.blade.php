@@ -10,7 +10,7 @@
             @endif
             <div class="card-body">
                 <div class="card">
-                    <div class="card-header">Data Vape
+                    <div class="card-header">Data Coil
                         <a href="{{ route('barang.create') }}" class="float-right btn btn-success btn-floating"> Tambah Data</a>
                     </div>
                         <div class="row">
