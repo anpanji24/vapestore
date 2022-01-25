@@ -15,7 +15,6 @@ class CreateKeluarsTable extends Migration
     {
         Schema::create('keluars', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('namabarang');
             $table->string('jenis');
             $table->integer('jumlah');
             $table->unsignedBigInteger('barang_id');

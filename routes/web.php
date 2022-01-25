@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('barang','BarangController');
+Route::resource('barangmasuk','MasukController');

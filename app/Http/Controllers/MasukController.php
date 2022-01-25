@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\masuk;
+use App\barang;
 use Illuminate\Http\Request;
 
 class MasukController extends Controller
@@ -14,7 +15,8 @@ class MasukController extends Controller
      */
     public function index()
     {
-        //
+        $masuk = masuk::with('barang')->get();
+        return view('masuk.index',compact('masuk'));
     }
 
     /**
@@ -24,7 +26,9 @@ class MasukController extends Controller
      */
     public function create()
     {
-        //
+        $masuk = masuk::all();
+        $barang = barang::all();
+        return view('masuk.create',compact('masuk','barang'));
     }
 
     /**
@@ -35,7 +39,19 @@ class MasukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'jenis' => 'required',
+            'jumlah' => 'required',
+            'barang_id' => 'required'
+        ]);
+
+        $masuk = new masuk;
+        $barang = barang::where(['id' => $request['barang_id']])->first();
+        $masuk->jenis = $request->jenis;
+        $masuk->jumlah = $request->jumlah;
+        $masuk->barang_id = $request->barang_id;
+        $masuk->save();
+        return redirect()->route('barangmasuk.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**

@@ -15,7 +15,6 @@ class CreateMasuksTable extends Migration
     {
         Schema::create('masuks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('namabarang');
             $table->string('jenis');
             $table->integer('jumlah');
             $table->unsignedBigInteger('barang_id');
