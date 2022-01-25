@@ -19,7 +19,10 @@
 			<a class="nav-link" href="{{route('barang.index')}}">Stok Barang <span class="sr-only">(current)</span></a>
 		</li>
 		<li class="nav-item active">
-			<a class="nav-link" href="">Barang Keluar <span class="sr-only">(current)</span></a>
+			<a class="nav-link" href="{{route('barangmasuk.index')}}">Barang Masuk <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item active">
+			<a class="nav-link" href="{{route('barangkeluar.index')}}">Barang Keluar <span class="sr-only">(current)</span></a>
 		</li>
 		<!-- <li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Person</a>

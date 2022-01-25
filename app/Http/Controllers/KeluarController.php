@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\keluar;
+use App\barang;
 use Illuminate\Http\Request;
 
 class KeluarController extends Controller
@@ -14,7 +15,8 @@ class KeluarController extends Controller
      */
     public function index()
     {
-        //
+        $keluar = keluar::with('barang')->get();
+        return view('keluar.index',compact('keluar'));
     }
 
     /**
@@ -24,7 +26,9 @@ class KeluarController extends Controller
      */
     public function create()
     {
-        //
+        $keluar = keluar::all();
+        $barang = barang::all();
+        return view('keluar.create',compact('keluar','barang'));
     }
 
     /**
@@ -35,7 +39,19 @@ class KeluarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'jenis' => 'required',
+            'jumlah' => 'required',
+            'barang_id' => 'required'
+        ]);
+
+        $keluar = new keluar;
+        $barang = barang::where(['id' => $request['barang_id']])->first();
+        $keluar->jenis = $request->jenis;
+        $keluar->jumlah = $request->jumlah;
+        $keluar->barang_id = $request->barang_id;
+        $keluar->save();
+        return redirect()->route('barangkeluar.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
