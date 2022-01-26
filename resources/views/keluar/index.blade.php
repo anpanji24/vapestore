@@ -38,7 +38,7 @@
                                                     <td>
                                                     <form action="{{ route('barang.destroy', $keluars->id) }}"method="POST">
                                                         @csrf @method('delete')
-                                                        <a href="{{ route('barang.edit',$keluars->id) }}" class="btn btn-primary">Edit</a>
+                                                       
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Ingin Menghapus Data?')">Delete</button>
                                                     </form>
                                                     </td>
