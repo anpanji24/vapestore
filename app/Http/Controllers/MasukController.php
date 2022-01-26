@@ -101,8 +101,10 @@ class MasukController extends Controller
      * @param  \App\masuk  $masuk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(masuk $masuk)
+    public function destroy($id)
     {
-        //
+        $barangmasuk = masuk::findOrFail($id);
+        $barangmasuk->delete();
+        return redirect()->route('barangmasuk.index');
     }
 }

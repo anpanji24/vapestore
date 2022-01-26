@@ -45,6 +45,14 @@ class KeluarController extends Controller
             'barang_id' => 'required'
         ]);
 
+        $barang = barang::where(['id' => $request['barang_id']])->first();
+        if($barang){
+            $stock = $barang->stock - (int) $request->jumlah;
+            // $total = $Barang->total_stock - (int) $request->total_stock;
+            $barang->update(['stock' => $stock]);
+        }
+
+
         $keluar = new keluar;
         $barang = barang::where(['id' => $request['barang_id']])->first();
         $keluar->jenis = $request->jenis;
@@ -94,8 +102,10 @@ class KeluarController extends Controller
      * @param  \App\keluar  $keluar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(keluar $keluar)
+    public function destroy($id)
     {
-        //
+        $barangkeluar = keluar::findOrFail($id);
+        $barangkeluar->delete();
+        return redirect()->route('barangkeluar.index');
     }
 }

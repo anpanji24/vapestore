@@ -36,7 +36,7 @@
                                                     <td>{{$masuks->jumlah}}</td>
                                                     <td>{{$masuks->barang->namabarang}}</td>
                                                     <td>
-                                                    <form action="{{ route('barang.destroy', $masuks->id) }}"method="POST">
+                                                    <form action="{{ route('barangmasuk.destroy', $masuks->id) }}"method="POST">
                                                         @csrf @method('delete')
                                                        
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Ingin Menghapus Data?')">Delete</button>
