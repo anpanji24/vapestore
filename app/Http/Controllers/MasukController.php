@@ -45,6 +45,13 @@ class MasukController extends Controller
             'barang_id' => 'required'
         ]);
 
+        $barang = barang::where(['id' => $request['barang_id']])->first();
+        if($barang){
+            $stock = $barang->stock + (int) $request->jumlah;
+            // $total = $Barang->total_stock + (int) $request->total_stock;
+            $barang->update(['stock' => $stock]);
+        }
+
         $masuk = new masuk;
         $barang = barang::where(['id' => $request['barang_id']])->first();
         $masuk->jenis = $request->jenis;
